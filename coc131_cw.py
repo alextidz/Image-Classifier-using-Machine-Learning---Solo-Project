@@ -13,9 +13,6 @@ from scipy.stats import ttest_rel
 
 from sklearn.manifold import LocallyLinearEmbedding
 
-# Please write the optimal hyperparameter values you obtain in the global variable 'optimal_hyperparm' below. This
-# variable should contain the values when I look at your submission. I should not have to run your code to populate this
-# variable.
 optimal_hyperparam = {
     'hiddenLayerSize': (256, 128),
     'alpha': 1
@@ -23,22 +20,9 @@ optimal_hyperparam = {
 
 class COC131:
     def q1(self, filename=None):
-        """
-        This function should be used to load the data. To speed-up processing in later steps, lower resolution of the
-        image to 32*32. The folder names in the root directory of the dataset are the class names. After loading the
-        dataset, you should save it into an instance variable self.x (for samples) and self.y (for labels). Both self.x
-        and self.y should be numpy arrays of dtype float.
-
-        :param filename: this is the name of an actual random image in the dataset. You don't need this to load the
-        dataset. This is used by me for testing your implementation.
-        :return res1: a one-dimensional numpy array containing the flattened low-resolution image in file 'filename'.
-        Flatten the image in the row major order. The dtype for the array should be float.
-        :return res2: a string containing the class name for the image in file 'filename'. This string should be same as
-        one of the folder names in the originally shared dataset.
-        """
 
         """
-        AT: Function loads and processes the EuroSAT image dataset. Lowers resolution to 32 x 32 for all images, flattens
+        Function loads and processes the EuroSAT image dataset. Lowers resolution to 32 x 32 for all images, flattens
         all images into 1D arrays and stores them in self.x, and storels labels in self.y. If a filename is provided, also returns
         the original file paths and corresponding labels for visualisation during testing.
         """
@@ -101,23 +85,13 @@ class COC131:
 
 
     def q2(self, inp):
-        """
-        This function should compute the standardized data from a given 'inp' data. The function should work for a
-        dataset with any number of features.
-
-        :param inp: an array from which the standardized data is to be computed.
-        :return res2: a numpy array containing the standardized data with standard deviation of 2.5. The array should
-        have the same dimensions as the original data
-        :return res1: sklearn object used for standardization.
-        """
 
         """
-        AT: Function calculates mean and standard deviation of all input data, with values of 0 for standard deviation
+        Function calculates mean and standard deviation of all input data, with values of 0 for standard deviation
         being replaced with a small number 1e-8 to avoid divide by 0 errors. It then standardises the data, resulting 
         in a mean of approximately 0 and a standard deviation of approximately 1. These are then scaled by a factor of 
         2.5, resulting in a standard deviation of approximately 2.5 for all features. Function returns an object of the
         original means and standard deviations used, and the final, standardised data.
-
         """
 
         means = np.mean(inp, axis = 0)                  # Calculate mean of each feature
@@ -146,18 +120,6 @@ class COC131:
 
 
     def q3(self, test_size=None, pre_split_data=None, hyperparam=None):
-        """
-        This function should build a MLP Classifier using the dataset loaded in function 'q1' and evaluate model
-        performance. You can assume that the function 'q1' has been called prior to calling this function. This function
-        should support hyperparameter optimizations.
-
-        :param test_size: the proportion of the dataset that should be reserved for testing. This should be a fraction
-        between 0 and 1.
-        :param pre_split_data: Can be used to provide data already split into training and testing.
-        :param hyperparam: hyperparameter values to be tested during hyperparameter optimization.
-        :return: The function should return 1 model object and 3 numpy arrays which contain the loss, training accuracy
-        and testing accuracy after each training iteration for the best model you found.
-        """
 
         """
         AT: Function splits data using a 70/30 train/test, standardises data and trains a MLPClassifier using different 
@@ -252,17 +214,9 @@ class COC131:
         
 
     def q4(self):
-        """
-        This function should study the impact of alpha on the performance and parameters of the model. For each value of
-        alpha in the list below, train a separate MLPClassifier from scratch. Other hyperparameters for the model can
-        be set to the best values you found in 'q3'. You can assume that the function 'q1' has been called
-        prior to calling this function.
-
-        :return: res should be the data you visualized.
-        """
 
         """
-        AT: Function shows how different alpha values affect accuracy, weights and biases of an MLPClassifier. It trains    
+        Function shows how different alpha values affect accuracy, weights and biases of an MLPClassifier. It trains    
         different models for each alpha value, using the optimal hyperparameters from q3. For each model, the weights, biases,
         and test accuracy are obtained. Function returns array of alpha values, array of weights, array of biases and array of
         accuracies to be used for visualisation.
@@ -317,19 +271,9 @@ class COC131:
 
 
     def q5(self):
-        """
-        This function should perform hypothesis testing to study the impact of using CV with and without Stratification
-        on the performance of MLPClassifier. Set other model hyperparameters to the best values obtained in the previous
-        questions. Use 5-fold cross validation for this question. You can assume that the function 'q1' has been called
-        prior to calling this function.
-
-        :return: The function should return 4 items - the final testing accuracy for both methods of CV, p-value of the
-        test and a string representing the result of hypothesis testing. The string can have only two possible values -
-        'Splitting method impacted performance' and 'Splitting method had no effect'.
-        """
 
         """
-        AT: Function performs hypothesis test to determine if stratified cross-validation has an impact on the performance 
+        Function performs hypothesis test to determine if stratified cross-validation has an impact on the performance 
         of an MLPClassifier when compared with non-stratified cross-validation. It trains and evaluates a model using both
         5-fold StratifiedKFold and 5-fold KFold, using the optimal hyperparameters from q3. It then compares the testing
         accuracies for both using a paired t-test. Function returns mean testing accuracies for both, the p-value from the test, 
@@ -417,15 +361,9 @@ class COC131:
     
 
     def q6(self):
-        """
-        This function should perform unsupervised learning using LocallyLinearEmbedding in Sklearn. You can assume that
-        the function 'q1' has been called prior to calling this function.
-
-        :return: The function should return the data you visualize.
-        """
 
         """
-        AT: Function applies Locally Linear Embedding to obtain a 2-dimensional representation of all samples in the dataset
+        Function applies Locally Linear Embedding to obtain a 2-dimensional representation of all samples in the dataset
         It was initially tested with n_neighbors = 10, but later increased to 25 after experimentation for a more local 
         structure and an improved class separability. Function returns the transformed 2D data along with the original class 
         labels, allowing for plotting of data points for visualisation.
@@ -443,5 +381,6 @@ class COC131:
             'data': transformedData,
             'labels': y
         }
+
 
         return res
