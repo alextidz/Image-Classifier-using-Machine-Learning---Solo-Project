@@ -39,9 +39,11 @@ This project uses the following technologies:
 ## Project Structure 
 This broken down into the following:
 
-- Main Python code - "coc131_cw.py"
+- Main Python code - "coc131_cw.py" 
 - Jupyter Notebook test code - "test1.ipynb"
 - Visualisations - list of png files with names corresponding to appropriate function
+
+Each function in the main code contains documentation explaining its functionality in detail.
 
 ## Note
 Due to the intensity of running this code, which required large numbers of iterations on an extremely large data set, it was not possible or realistic for me to test as many combinations of hyperparameter values as I would've liked in order to obtain a more accurate model. This was due to a combination of slow run time on this device, paired with a limited project time frame. Additionally, the original image dataset has not been included in this repository as it is far too large and contains tens of thousands of images.
