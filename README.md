@@ -1,1 +1,4 @@
-# Image-Classifier-using-Machine-Learning---Solo-Project-
+# Image Classifier using Machine Learning - Solo Project
+
+## Overview 
+
