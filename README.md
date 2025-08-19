@@ -37,7 +37,7 @@ This project uses the following technologies:
 - Jupyter Notebook - For running and testing the functions written in the main code, and providing corresponding data visualisations 
 
 ## Project Structure 
-This broken down into the following:
+This project is broken down into the following:
 
 - Main Python code - "coc131_cw.py" 
 - Jupyter Notebook test code - "test1.ipynb"
